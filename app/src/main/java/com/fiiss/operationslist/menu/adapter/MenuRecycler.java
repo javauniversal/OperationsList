@@ -3,7 +3,6 @@ package com.fiiss.operationslist.menu.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -13,25 +12,30 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.fiiss.operationslist.R;
 import com.fiiss.operationslist.entities.MenuApp;
+import com.fiiss.operationslist.menu.view.MainActivity;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class MenuRecycler extends RecyclerView.Adapter<ViewHolderMenu> {
 
     private Context mContext;
     private DatabaseReference mDatabaseReference;
     private ChildEventListener mChildEventListener;
+    private MainActivity mainActivity;
 
     private List<String> mMenuIds = new ArrayList<>();
     private List<MenuApp> menuAppList = new ArrayList<>();
 
-    public MenuRecycler(final Context context, DatabaseReference databaseReference) {
+    public MenuRecycler(final Context context, DatabaseReference databaseReference, MainActivity mainActivity) {
         this.mContext = context;
         this.mDatabaseReference = databaseReference;
+        this.mainActivity = mainActivity;
 
         ChildEventListener childEventListener = new ChildEventListener() {
             @Override
@@ -78,7 +82,7 @@ public class MenuRecycler extends RecyclerView.Adapter<ViewHolderMenu> {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(mContext, "Failed to load comments.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, databaseError.getCode(), Toast.LENGTH_SHORT).show();
             }
         };
 
@@ -98,8 +102,22 @@ public class MenuRecycler extends RecyclerView.Adapter<ViewHolderMenu> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderMenu holder, @SuppressLint("RecyclerView") final int position) {
-        MenuApp menuApp = menuAppList.get(position);
-        holder.title.setText(menuApp.getName());
+        final MenuApp menuApp = menuAppList.get(position);
+
+        if (!Locale.getDefault().getLanguage().equals("en")) {
+            holder.title.setText(menuApp.getName());
+        } else {
+            holder.title.setText(menuApp.getNameUS());
+        }
+
+        holder.contentCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainActivity.onClicRecycle(menuApp);
+            }
+        });
+
+
     }
 
     @Override
