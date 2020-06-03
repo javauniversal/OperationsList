@@ -8,10 +8,10 @@
     <string name="indica_base">Indica la base</string>
     <string name="indica_altura">Indica la altura</string>
     <string name="indica_radio">Indica el radio</string>
-    <string name="area_circulo">El area de la circunferencia es</string>
-    <string name="area_rectangulo">El area del rectangulo es</string>
-    <string name="area_triangulo">El area del triangulo es</string>
-    <string name="area_cuadrado">El area del cuadrado es</string>
+    <string name="area_circulo">El área de la circunferencia es:</string>
+    <string name="area_rectangulo">El área del rectangulo es:</string>
+    <string name="area_triangulo">El área del triangulo es:</string>
+    <string name="area_cuadrado">El área del cuadrado es:</string>
     <string name="file_required">Campo requerido</string>
     <string name="volumen_esfera">Radio de la esfera</string>
     <string name="volumen_cubo">Cantidad de aristas</string>

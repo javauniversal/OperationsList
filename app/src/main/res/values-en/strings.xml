@@ -9,4 +9,15 @@
     <string name="indica_base">Indicates the base</string>
     <string name="indica_altura">Indicates the height</string>
     <string name="indica_radio">Indicates the radius</string>
+    <string name="area_circulo">The area of the circumference is:</string>
+    <string name="volumen_cilindro_parameter">The cylinder volume is:</string>
+    <string name="volumen_cono_parameter">The volume of the cone is:</string>
+    <string name="volumen_cubo_parameter">The volume of a cube is:</string>
+    <string name="volumen_esfera_parameter">The volume of the sphere is:</string>
+    <string name="volumen_cubo">Number of edges</string>
+    <string name="volumen_esfera">Radio de la esfera</string>
+    <string name="file_required">Required field</string>
+    <string name="area_cuadrado">The area of the square is:</string>
+    <string name="area_triangulo">The area of the triangle is:</string>
+    <string name="area_rectangulo">The area of the rectangle is:</string>
 </resources>
