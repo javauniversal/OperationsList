@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#55000000">
+
+    <LinearLayout
+        android:id="@+id/contentDialog"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:background="@color/icons"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <TextView
+            style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="@string/Titulo"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold" />
+
+        <TextView
+            style="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header"
+            android:layout_marginTop="20dp"
+            android:id="@+id/txtParametroUno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" />
+
+        <EditText
+            android:id="@+id/editParametroUno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginEnd="70dp"
+            android:background="@drawable/background_edittext"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:padding="10dp"
+            tools:ignore="LabelFor" />
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/linContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header"
+                android:layout_marginTop="20dp"
+                android:id="@+id/txtParametroDos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center" />
+
+            <EditText
+                android:id="@+id/EditParametroDos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_marginStart="70dp"
+                android:layout_marginEnd="70dp"
+                android:background="@drawable/background_edittext"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:padding="10dp"
+                tools:ignore="LabelFor" />
+
+        </LinearLayout>
+
+        <TextView
+            style="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header"
+            android:layout_marginTop="20dp"
+            android:id="@+id/txtResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" />
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="50dp"
+            android:gravity="right"
+            tools:ignore="RtlHardcoded">
+
+            <Button
+                android:id="@+id/btnClear"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/close" />
+
+            <Button
+                android:id="@+id/btnCalculate"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/calculate" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

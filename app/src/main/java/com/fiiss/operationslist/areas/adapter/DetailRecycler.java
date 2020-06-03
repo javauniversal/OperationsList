@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fiiss.operationslist.R;
+import com.fiiss.operationslist.areas.view.ActivityDetail;
 import com.fiiss.operationslist.entities.Areas;
 import com.fiiss.operationslist.menu.adapter.ViewHolderMenu;
 
@@ -20,12 +21,13 @@ import java.util.Locale;
 public class DetailRecycler extends RecyclerView.Adapter<ViewHolderMenu> {
 
     private Context mContext;
+    private ActivityDetail activityDetail;
+    private List<Areas> areasList;
 
-    private List<Areas> areasList = new ArrayList<>();
-
-    public DetailRecycler(final Context context, List<Areas> areasList) {
+    public DetailRecycler(final Context context, List<Areas> areasList, ActivityDetail activityDetail) {
         this.mContext = context;
         this.areasList = areasList;
+        this.activityDetail = activityDetail;
 
     }
 
@@ -50,6 +52,7 @@ public class DetailRecycler extends RecyclerView.Adapter<ViewHolderMenu> {
         holder.contentCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                activityDetail.onClicRecycle(areas);
             }
         });
 

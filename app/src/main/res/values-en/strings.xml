@@ -2,4 +2,11 @@
 <resources>
     <string name="app_name">Operations List</string>
     <string name="Titulo">Title</string>
+    <string name="close">Close</string>
+    <string name="value_sides">Sides value</string>
+    <string name="calculate">Calculate</string>
+    <string name="base_altura">Indicate the base or height</string>
+    <string name="indica_base">Indicates the base</string>
+    <string name="indica_altura">Indicates the height</string>
+    <string name="indica_radio">Indicates the radius</string>
 </resources>
