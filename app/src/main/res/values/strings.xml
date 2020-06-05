@@ -19,4 +19,8 @@
     <string name="volumen_cubo_parameter">"El volumen de un cubo es: "</string>
     <string name="volumen_cono_parameter">"El volumen del cono es: "</string>
     <string name="volumen_cilindro_parameter">"El volumen del cilindro es: "</string>
+    <string name="no">No.</string>
+    <string name="operacion">Operación</string>
+    <string name="datos">Datos</string>
+    <string name="resultado">Resultado</string>
 </resources>

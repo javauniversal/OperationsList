@@ -15,18 +15,22 @@ import com.fiiss.operationslist.areas.dialog.DialogDatosOperations;
 import com.fiiss.operationslist.areas.interfaces.OnclicRecycleAdapterDetail;
 import com.fiiss.operationslist.entities.Areas;
 import com.fiiss.operationslist.entities.MenuApp;
+import com.fiiss.operationslist.entities.ParameterFirebase;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Locale;
 
 public class ActivityDetail extends AppCompatActivity implements OnclicRecycleAdapterDetail {
 
     private MenuApp menuApp;
+    private DatabaseReference refOperations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
         RecyclerView rcyDetail = findViewById(R.id.rcyDetail);
 
         Bundle bundle = getIntent().getExtras();
@@ -39,6 +43,9 @@ public class ActivityDetail extends AppCompatActivity implements OnclicRecycleAd
         rcyDetail.setLayoutManager(mLayoutManager);
         rcyDetail.setItemAnimator(new DefaultItemAnimator());
         rcyDetail.setAdapter(mAdapter);
+
+        refOperations = database.getReference("operations_performed");
+
     }
 
     //region panel to open the calculate volume dialog
@@ -80,6 +87,8 @@ public class ActivityDetail extends AppCompatActivity implements OnclicRecycleAd
                         double result = Double.parseDouble(dialogDatosCodigo.getEditParametroUno().getText().toString()) *
                                 Double.parseDouble(dialogDatosCodigo.getEditParametroUno().getText().toString());
                         dialogDatosCodigo.getTxtResult().setText(String.format("%1s %1.2f", getString(R.string.area_cuadrado), result));
+
+                        pushInfoFirebase(areas.getName(), dialogDatosCodigo.getEditParametroUno().getText().toString(), "", dialogDatosCodigo.getTxtResult().getText().toString());
                     }
                 } else if (areas.getUid() == 2 || areas.getUid() == 3) {
 
@@ -103,12 +112,17 @@ public class ActivityDetail extends AppCompatActivity implements OnclicRecycleAd
 
                             dialogDatosCodigo.getTxtResult().setText(String.format("%1s %1.2f", getString(R.string.area_rectangulo), result));
 
+                            pushInfoFirebase(areas.getName(), dialogDatosCodigo.getEditParametroUno().getText().toString(), dialogDatosCodigo.getEditParametroDos().getText().toString(),
+                                    dialogDatosCodigo.getTxtResult().getText().toString());
                         } else {
                             //triangulo
                             double result = (Double.parseDouble(dialogDatosCodigo.getEditParametroUno().getText().toString()) *
                                     Double.parseDouble(dialogDatosCodigo.getEditParametroDos().getText().toString())/2);
 
                             dialogDatosCodigo.getTxtResult().setText(String.format("%1s %1.2f", getString(R.string.area_triangulo), result));
+
+                            pushInfoFirebase(areas.getName(), dialogDatosCodigo.getEditParametroUno().getText().toString(), dialogDatosCodigo.getEditParametroDos().getText().toString(),
+                                    dialogDatosCodigo.getTxtResult().getText().toString());
                         }
                     }
 
@@ -123,6 +137,9 @@ public class ActivityDetail extends AppCompatActivity implements OnclicRecycleAd
                     } else {
                         dialogDatosCodigo.getTxtResult().setText(String.format("%1s %1.2f", getString(R.string.area_circulo),
                                 Math.PI*(Math.pow(Double.parseDouble(dialogDatosCodigo.getEditParametroUno().getText().toString()), 2))));
+
+                        pushInfoFirebase(areas.getName(), dialogDatosCodigo.getEditParametroUno().getText().toString(), "", dialogDatosCodigo.getTxtResult().getText().toString());
+
                     }
                 }
 
@@ -179,18 +196,24 @@ public class ActivityDetail extends AppCompatActivity implements OnclicRecycleAd
                     //Esfera
                     double radio = calcularVolumenEsfera(Double.parseDouble(dialogDatosCodigo.getEditParametroUno().getText().toString()));
                     dialogDatosCodigo.getTxtResult().setText(String.format("%1s %1.2f", getString(R.string.volumen_esfera_parameter), radio));
+                    pushInfoFirebase(areas.getName(), dialogDatosCodigo.getEditParametroUno().getText().toString(), "", dialogDatosCodigo.getTxtResult().getText().toString());
                 } else if (areas.getUid() == 2) {
                     //Cubo
                     double arista = calcularVolumenCubo(Double.parseDouble(dialogDatosCodigo.getEditParametroUno().getText().toString()));
                     dialogDatosCodigo.getTxtResult().setText(String.format("%1s %1.2f", getString(R.string.volumen_cubo_parameter), arista));
+                    pushInfoFirebase(areas.getName(), dialogDatosCodigo.getEditParametroUno().getText().toString(), "", dialogDatosCodigo.getTxtResult().getText().toString());
                 } else if (areas.getUid() == 3) {
                     //Cono
                     double volumen = calcularVolumenCono(Double.parseDouble(dialogDatosCodigo.getEditParametroUno().getText().toString()), Double.parseDouble(dialogDatosCodigo.getEditParametroDos().getText().toString()));
                     dialogDatosCodigo.getTxtResult().setText(String.format("%1s %1.2f", getString(R.string.volumen_cono_parameter), volumen));
+                    pushInfoFirebase(areas.getName(), dialogDatosCodigo.getEditParametroUno().getText().toString(), dialogDatosCodigo.getEditParametroDos().getText().toString(),
+                            dialogDatosCodigo.getTxtResult().getText().toString());
                 } else if (areas.getUid() == 4) {
                     //Cilindro
                     double volumen = calcularVolumenCilindro(Double.parseDouble(dialogDatosCodigo.getEditParametroUno().getText().toString()), Double.parseDouble(dialogDatosCodigo.getEditParametroDos().getText().toString()));
                     dialogDatosCodigo.getTxtResult().setText(String.format("%1s %1.2f", getString(R.string.volumen_cilindro_parameter), volumen));
+                    pushInfoFirebase(areas.getName(), dialogDatosCodigo.getEditParametroUno().getText().toString(), dialogDatosCodigo.getEditParametroDos().getText().toString(),
+                            dialogDatosCodigo.getTxtResult().getText().toString());
                 }
             }
 
@@ -238,6 +261,10 @@ public class ActivityDetail extends AppCompatActivity implements OnclicRecycleAd
 
     static double calcularVolumenCilindro(double radio, double altura) {
         return Math.PI*(radio*radio)*altura;
+    }
+
+    private void pushInfoFirebase(String operation, String parameterOne, String parameterTwo, String result) {
+        refOperations.push().setValue(new ParameterFirebase(operation, parameterOne, parameterTwo, result));
     }
 
 }

@@ -13,6 +13,7 @@ import com.fiiss.operationslist.areas.view.ActivityDetail;
 import com.fiiss.operationslist.entities.MenuApp;
 import com.fiiss.operationslist.menu.adapter.MenuRecycler;
 import com.fiiss.operationslist.menu.interfaces.OnclicRecycleAdapter;
+import com.fiiss.operationslist.operations_performed.view.ActivityOperationsUnimagdalena;
 import com.fiiss.operationslist.utilities.Constantes;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -48,8 +49,14 @@ public class MainActivity extends AppCompatActivity implements OnclicRecycleAdap
 
     @Override
     public void onClicRecycle(MenuApp menuApp) {
-        Intent intent = new Intent(this, ActivityDetail.class);
-        intent.putExtra("data", (Serializable) menuApp);
-        startActivity(intent);
+        if (menuApp.getUid() == 3) {
+            Intent intent = new Intent(this, ActivityOperationsUnimagdalena.class);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(this, ActivityDetail.class);
+            intent.putExtra("data", (Serializable) menuApp);
+            startActivity(intent);
+        }
+
     }
 }

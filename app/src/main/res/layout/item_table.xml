@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/txtNumber"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.4"
+        android:background="@drawable/table_content_cell_bg"
+        android:gravity="center"
+        android:text="@string/no" />
+
+    <TextView
+        android:id="@+id/txtOperation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.2"
+        android:background="@drawable/table_content_cell_bg"
+        android:gravity="center"
+        android:text="@string/operacion" />
+
+    <TextView
+        android:id="@+id/txtData"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.3"
+        android:background="@drawable/table_content_cell_bg"
+        android:gravity="center"
+        android:text="@string/datos" />
+
+    <TextView
+        android:id="@+id/txtResult"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/table_content_cell_bg"
+        android:gravity="center"
+        android:text="@string/resultado" />
+
+</LinearLayout>

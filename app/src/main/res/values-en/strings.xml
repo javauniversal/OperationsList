@@ -20,4 +20,8 @@
     <string name="area_cuadrado">The area of the square is:</string>
     <string name="area_triangulo">The area of the triangle is:</string>
     <string name="area_rectangulo">The area of the rectangle is:</string>
+    <string name="no">No.</string>
+    <string name="operacion">Operation</string>
+    <string name="datos">"Data "</string>
+    <string name="resultado">Result</string>
 </resources>

@@ -44,7 +44,7 @@ public class MenuRecycler extends RecyclerView.Adapter<ViewHolderMenu> {
                 MenuApp menuApp = dataSnapshot.getValue(MenuApp.class);
                 mMenuIds.add(dataSnapshot.getKey());
                 menuAppList.add(menuApp);
-                notifyItemInserted(menuAppList.size() - 1);
+                notifyItemInserted(menuAppList.size());
 
             }
 

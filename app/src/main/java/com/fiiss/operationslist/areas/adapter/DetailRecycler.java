@@ -14,7 +14,6 @@ import com.fiiss.operationslist.areas.view.ActivityDetail;
 import com.fiiss.operationslist.entities.Areas;
 import com.fiiss.operationslist.menu.adapter.ViewHolderMenu;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
